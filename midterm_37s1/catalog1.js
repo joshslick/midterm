@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    fetch("./cars.json")  
+    fetch("./Honda.json")  
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("catalog-container");
             
-            const cars = [...data.honda, ...data.chevorlet];
+            const cars = data.honda;
             
             cars.forEach(car => {
                 const colDiv = document.createElement("div");

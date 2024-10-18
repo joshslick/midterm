@@ -1,0 +1,21 @@
+{
+    "honda":[
+        {
+            "name": "Accord",
+            "description": "The Honda Accord is a midsize sedan known for its fuel efficiency, safety, reliability, and technology.",
+            "image": "./images/accord.png"
+        },
+        {
+            "name": "Civic",
+            "description": "The Honda Civic is a compact car available in sedan, hatchback, and coupe forms, offering practicality and value.",
+            "image": "./images/civic.png"
+        },
+        {
+            "name": "CR-V",
+            "description": "The Honda CR-V is a compact SUV known for its practicality, efficiency, and refined features, available in gas and hybrid models.",
+            "image": "./images/CR-V.png"
+        }
+    ]
+
+
+}
