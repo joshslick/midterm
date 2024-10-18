@@ -1,82 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const cars = [
-        {
-            name: "Accord",
-            description: "The Honda Accord is a midsize sedan known for its fuel efficiency, safety, reliability, and technology.",
-            image: "./images/accord.png"
-        },
-        {
-            name: "Civic",
-            description: "The Honda Civic is a compact car available in sedan, hatchback, and coupe forms, offering practicality and value.",
-            image: "./images/civic.png"
-        },
-        {
-            name: "CR-V",
-            description: "The Honda CR-V is a compact SUV known for its practicality, efficiency, and refined features, available in gas and hybrid models.",
-            image: "./images/CR-V.png"
-        }
-    ];
+    
+    fetch("./cars.json")  
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById("catalog-container");
+            
+            const cars = [...data.honda, ...data.chevorlet];
+            
+            cars.forEach(car => {
+                const colDiv = document.createElement("div");
+                colDiv.classList.add("col");
 
-    const container = document.getElementById("catalog-container");
+                const cardDiv = document.createElement("div");
+                cardDiv.classList.add("card", "shadow-sm");
 
-    cars.forEach(car => {
-        const colDiv = document.createElement("div");
-        colDiv.classList.add("col");
+                const img = document.createElement("img");
+                img.src = car.image;
+                img.alt = car.name;
+                img.classList.add("bd-placeholder-img", "card-img-top");
+                img.width = "100%";
+                img.height = "225";
 
-        const cardDiv = document.createElement("div");
-        cardDiv.classList.add("card", "shadow-sm");
+                const cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
 
-        const img = document.createElement("img");
-        img.src = car.image;
-        img.alt = car.name;
-        img.classList.add("bd-placeholder-img", "card-img-top");
-        img.width = "100%";
-        img.height = "225";
+                const carName = document.createElement("h1");
+                carName.textContent = car.name;
 
-        const cardBody = document.createElement("div");
-        cardBody.classList.add("card-body");
+                const description = document.createElement("p");
+                description.classList.add("card-text");
+                description.textContent = car.description;
 
-        const carName = document.createElement("h1");
-        carName.textContent = car.name;
+                const btnGroup = document.createElement("div");
+                btnGroup.classList.add("btn-group");
 
-        const description = document.createElement("p");
-        description.classList.add("card-text");
-        description.textContent = car.description;
+                const viewBtn = document.createElement("button");
+                viewBtn.type = "button";
+                viewBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
+                viewBtn.textContent = "View";
 
-        const btnGroup = document.createElement("div");
-        btnGroup.classList.add("btn-group");
+                const editBtn = document.createElement("button");
+                editBtn.type = "button";
+                editBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
+                editBtn.textContent = "Edit";
 
-        const viewBtn = document.createElement("button");
-        viewBtn.type = "button";
-        viewBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
-        viewBtn.textContent = "View";
+                btnGroup.appendChild(viewBtn);
+                btnGroup.appendChild(editBtn);
 
-        const editBtn = document.createElement("button");
-        editBtn.type = "button";
-        editBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
-        editBtn.textContent = "Edit";
+                const footer = document.createElement("div");
+                footer.classList.add("d-flex", "justify-content-between", "align-items-center");
 
-        btnGroup.appendChild(viewBtn);
-        btnGroup.appendChild(editBtn);
+                const smallText = document.createElement("small");
+                smallText.classList.add("text-body-secondary");
+                smallText.textContent = "9 mins";
 
-        const footer = document.createElement("div");
-        footer.classList.add("d-flex", "justify-content-between", "align-items-center");
+                footer.appendChild(btnGroup);
+                footer.appendChild(smallText);
 
-        const smallText = document.createElement("small");
-        smallText.classList.add("text-body-secondary");
-        smallText.textContent = "9 mins";
+                cardBody.appendChild(carName);
+                cardBody.appendChild(description);
+                cardBody.appendChild(footer);
 
-        footer.appendChild(btnGroup);
-        footer.appendChild(smallText);
+                cardDiv.appendChild(img);
+                cardDiv.appendChild(cardBody);
+                colDiv.appendChild(cardDiv);
 
-        cardBody.appendChild(carName);
-        cardBody.appendChild(description);
-        cardBody.appendChild(footer);
-
-        cardDiv.appendChild(img);
-        cardDiv.appendChild(cardBody);
-        colDiv.appendChild(cardDiv);
-
-        container.appendChild(colDiv);
-    });
+                container.appendChild(colDiv);
+            });
+        })
+        .catch(error => console.error("Error fetching the JSON data:", error));
 });
