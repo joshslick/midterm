@@ -45,6 +45,12 @@
         "description": "The Honda CR-V is a compact SUV known for its practicality, efficiency, and refined features, available in gas and hybrid models.",
         "price_range": "$18,000-$40,000 (Last 10 Years)",
         "image": "./images/CR-V.png"
+    },
+    {
+        "name": "Pilot",
+        "description": "The Honda Pilot is a midsize SUV known for its spacious interior, versatility, and family-friendly features. It typically seats up to eight passengers and offers a comfortable ride, making it ideal for families and road trips.",
+        "price_range": "$20,000-$50,000 (Last 10 Years)",
+        "image": "./images/Pilot.png"       
     }
 ]
 
