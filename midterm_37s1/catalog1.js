@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    fetch("./Honda.json")  
+    fetch("./data.json")  
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("catalog-container");
@@ -31,34 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 description.classList.add("card-text");
                 description.textContent = car.description;
 
-                const btnGroup = document.createElement("div");
-                btnGroup.classList.add("btn-group");
+                const price_range = document.createElement("p");
+                price_range.classList.add("card-text");
+                price_range.textContent = car.price_range;
 
-                const viewBtn = document.createElement("button");
-                viewBtn.type = "button";
-                viewBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
-                viewBtn.textContent = "View";
-
-                const editBtn = document.createElement("button");
-                editBtn.type = "button";
-                editBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
-                editBtn.textContent = "Edit";
-
-                btnGroup.appendChild(viewBtn);
-                btnGroup.appendChild(editBtn);
 
                 const footer = document.createElement("div");
                 footer.classList.add("d-flex", "justify-content-between", "align-items-center");
 
-                const smallText = document.createElement("small");
-                smallText.classList.add("text-body-secondary");
-                smallText.textContent = "9 mins";
-
-                footer.appendChild(btnGroup);
-                footer.appendChild(smallText);
 
                 cardBody.appendChild(carName);
                 cardBody.appendChild(description);
+                cardBody.appendChild(price_range);
                 cardBody.appendChild(footer);
 
                 cardDiv.appendChild(img);
